@@ -1,12 +1,12 @@
-<apex:page standardController="Address__c">
+<apex:page standardController="Address__c" id="page">
 
-    <apex:sectionheader title="AddressFinder"
+    <apex:sectionheader title="AddressFinder" id="header"
                         description="Here's a simple VisualForce page demonstrating how you can integrate
                                     AddressFinder's address autocompletion JavaScript widget with your custom views."/>
     
-    <apex:pageblock mode="new" title="Your VisualForce Page">
-        <apex:form >
-            <apex:pageblockSection title="Address Information">
+    <apex:pageblock mode="new" title="Your VisualForce Page" id="block">
+        <apex:form id="form">
+            <apex:pageblockSection title="Address Information" id="blockSection">
                 <apex:inputTextarea label="Street" id="street" rows="4" cols="28"/><br/>
                 <apex:inputText label="City" id="city" size="30"/><br/>
                 <apex:inputText label="State/Province" id="province" size="30"/><br/>
@@ -28,11 +28,11 @@
         
         // address field elements - update these IDs to match the address fields on your page
         // (the street input element is used as the address search field)
-        var streetId = 'j_id0:j_id2:j_id3:j_id4:street'; 
-        var cityId = 'j_id0:j_id2:j_id3:j_id4:city';
-        var provinceId = 'j_id0:j_id2:j_id3:j_id4:province';
-        var postcodeId = 'j_id0:j_id2:j_id3:j_id4:postcode';
-        var countryId = 'j_id0:j_id2:j_id3:j_id4:country';
+        var streetId = 'page:block:form:blockSection:street'; 
+        var cityId = 'page:block:form:blockSection:city';
+        var provinceId = 'page:block:form:blockSection:province';
+        var postcodeId = 'page:block:form:blockSection:postcode';
+        var countryId = 'page:block:form:blockSection:country';
         
         // enable/disable debug mode (displays errors as JS alerts, else logs to console) 
         var debug = true;
