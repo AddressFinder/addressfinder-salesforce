@@ -1,18 +1,3 @@
-/*
- * The AddressFinder script for Salesforce adds autocomplete capability for VisualForce pages.
- *
- * Following is a simple example showing how to integrate AddressFinder's JavaScript widget
- * with your custom pages.  Within the script tags you'll find a configuration block, allowing
- * you to specify your license key, country details, and the page's address fields.
- *
- * For more information view the README here:
- * https://github.com/AbleTech/addressfinder-salesforce
- *
- * VERSION 1.0.0
- *
- * Copyright (c) 2016 Abletech
- */
-
 <apex:page standardController="Address__c" id="page">
 
     <apex:sectionheader title="AddressFinder" id="header"
@@ -33,6 +18,21 @@
   
   
     <script>
+    
+        /*
+         * The AddressFinder script for Salesforce adds autocomplete capability for VisualForce pages.
+         *
+         * Below is a simple example showing how to integrate AddressFinder's JavaScript widget
+         * with your custom pages.  The configuration block, allows you to specify your license
+         * key, country details, and the page's address fields.
+         *
+         * For more information view the README here:
+         * https://github.com/AbleTech/addressfinder-salesforce
+         *
+         * VERSION 1.0.0
+         *
+         * Copyright (c) 2016 Abletech
+         */
     
         /**************************** CONFIGURATION ****************************/
         // AddressFinder license key.
