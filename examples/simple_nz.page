@@ -20,7 +20,7 @@
     <script>
     
         /*
-         * The AddressFinder script for Salesforce adds autocomplete capability for VisualForce pages.
+         * The AddressFinder for Salesforce script adds autocomplete capability for VisualForce pages.
          *
          * Below is a simple example showing how to integrate AddressFinder's JavaScript widget
          * with your custom pages.  The configuration block allows you to specify your license
