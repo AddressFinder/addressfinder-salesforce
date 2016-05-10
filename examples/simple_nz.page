@@ -33,6 +33,9 @@
         var provinceId = 'j_id0:j_id2:j_id3:j_id4:province';
         var postcodeId = 'j_id0:j_id2:j_id3:j_id4:postcode';
         var countryId = 'j_id0:j_id2:j_id3:j_id4:country';
+        
+        // enable/disable debug mode (displays errors as JS alerts, else logs to console) 
+        var debug = true;
         /***********************************************************************/
         
 
@@ -94,8 +97,12 @@
             
             // handle field not found
             var errorMessage = "AddressFinder Error - unable to find an element with id: " + field;
-            if (window.console) {
-                console.log(errorMessage);
+            if(debug){
+                alert(errorMessage);
+            } else {
+                if (window.console) {
+                    console.log(errorMessage);
+                }
             }
         }
     
