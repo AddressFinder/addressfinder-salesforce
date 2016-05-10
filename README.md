@@ -14,7 +14,7 @@ The Salesforce script provides the following features:
 
 _Screencast Walkthrough_
 
-1. Copy our AddressFinder for Salesforce script from the example VisualForce page source in our GitHub repository
+1. Copy our AddressFinder for Salesforce script from the [example VisualForce page source](https://github.com/AbleTech/addressfinder-salesforce/blob/master/examples/simple_nz.page) in our GitHub repository
 2. Paste the script into your VisualForce page
 3. Edit the `CONFIGURATION` block
   1. Enter your AddressFinder license key and country details
