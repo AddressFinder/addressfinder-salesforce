@@ -23,7 +23,7 @@
          * The AddressFinder script for Salesforce adds autocomplete capability for VisualForce pages.
          *
          * Below is a simple example showing how to integrate AddressFinder's JavaScript widget
-         * with your custom pages.  The configuration block, allows you to specify your license
+         * with your custom pages.  The configuration block allows you to specify your license
          * key, country details, and the page's address fields.
          *
          * For more information view the README here:
@@ -37,9 +37,10 @@
         /**************************** CONFIGURATION ****************************/
         // AddressFinder license key.
         var afKey = '4NDFAY69QMGCR8ULBPX3';
-        // AddressFinder supports NZ and AU country codes. 
+        
+        // AddressFinder country details (supports NZ and AU country codes). 
         var countryCode = 'NZ';
-        var countryString = 'New Zealand';
+        var countryName = 'New Zealand';
         
         // address field elements - update these IDs to match the address fields on your page
         // (the street input element is used as the address search field)
@@ -68,7 +69,7 @@
             widget.on("result:select", function(address, metaData) {
                 
                 // country is hardcoded to match the scope of the widget
-                setFieldValue(countryId, countryString);
+                setFieldValue(countryId, countryName);
         
                 // get full address string from widget result
                 var addressComponents = address.split(', ');
@@ -102,7 +103,8 @@
             document.body.appendChild(script);
         })(initAF));
            
-        var setFieldValue = function(elementId, value) {  
+        var setFieldValue = function(elementId, value) {
+          
             // update field value
             var field = document.getElementById(elementId);
             if (field) {
@@ -111,9 +113,9 @@
             }
             
             // handle field not found
-            var errorMessage = "AddressFinder Error: Attempted to update value for field that could not be found."
-                                + "\n\tField ID: \t" + elementId 
-                                + "\n\tValue: \t" + value;
+            var errorMessage = "AddressFinder Error: Attempted to update value for field that could not be found.\n"
+                                + "\nField ID: \t" + elementId 
+                                + "\nValue: \t" + value;
             if(debug){
                 alert(errorMessage);
             } else {
