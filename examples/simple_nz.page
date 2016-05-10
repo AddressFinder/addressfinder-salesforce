@@ -96,7 +96,9 @@
             }
             
             // handle field not found
-            var errorMessage = "AddressFinder Error - unable to find an element with id: " + elementId;
+            var errorMessage = "AddressFinder Error: Attempted to update value for field that could not be found."
+                                + "\n\tField ID: \t" + elementId 
+                                + "\n\tValue: \t" + value;
             if(debug){
                 alert(errorMessage);
             } else {
