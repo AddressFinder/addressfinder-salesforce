@@ -12,7 +12,7 @@ The Salesforce script provides the following features:
 
 ## Install Instructions
 
-_Screencast Walkthrough_
+**_Insert Screencast Walkthrough Here_**
 
 1. Copy our AddressFinder for Salesforce script from the [example VisualForce page source](https://github.com/AbleTech/addressfinder-salesforce/blob/master/examples/simple_nz.page) in our GitHub repository
 2. Paste the script into your VisualForce page
