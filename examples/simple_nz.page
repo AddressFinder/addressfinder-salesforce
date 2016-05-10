@@ -1,0 +1,103 @@
+<apex:page standardController="Address__c">
+
+    <apex:sectionheader title="AddressFinder"
+                        description="Here's a simple VisualForce page demonstrating how you can integrate
+                                    AddressFinder's address autocompletion JavaScript widget with your custom views."/>
+    
+    <apex:pageblock mode="new" title="Your VisualForce Page">
+        <apex:form >
+            <apex:pageblockSection title="Address Information">
+                <apex:inputTextarea label="Street" id="street" rows="4" cols="28"/><br/>
+                <apex:inputText label="City" id="city" size="30"/><br/>
+                <apex:inputText label="State/Province" id="province" size="30"/><br/>
+                <apex:inputText label="ZIP/Postal Code" id="postcode" size="30"/><br/>
+                <apex:inputText label="Country" id="country" size="30"/>
+            </apex:pageblockSection>
+        </apex:form>
+    </apex:pageblock>
+  
+  
+    <script>
+    
+        /**************************** CONFIGURATION ****************************/
+        // AddressFinder license key.
+        var afKey = '4NDFAY69QMGCR8ULBPX3';
+        // AddressFinder supports NZ and AU country codes. 
+        var countryCode = 'NZ';
+        var countryString = 'New Zealand';
+        
+        // address field elements - update these IDs to match the address fields on your page
+        // (the street input element is used as the address search field)
+        var streetId = 'j_id0:j_id2:j_id3:j_id4:street'; 
+        var cityId = 'j_id0:j_id2:j_id3:j_id4:city';
+        var provinceId = 'j_id0:j_id2:j_id3:j_id4:province';
+        var postcodeId = 'j_id0:j_id2:j_id3:j_id4:postcode';
+        var countryId = 'j_id0:j_id2:j_id3:j_id4:country';
+        /***********************************************************************/
+        
+
+        // initialise and configure AddressFinder widget
+        var widget; 
+        var streetField = document.getElementById(streetId);   
+        
+        initAF = function() {
+            widget = new AddressFinder.Widget(
+                streetField,
+                afKey,
+                countryCode
+            );
+            
+            widget.on("result:select", function(address, metaData) {
+                
+                // country is hardcoded to match the scope of the widget
+                setFieldValue(countryId, countryString);
+        
+                // get full address string from widget result
+                var addressComponents = address.split(', ');
+                var componentCount = addressComponents.length;
+                
+                // separate address components into city/postcode and street address
+                var cityAndPostcode = addressComponents[componentCount - 1].split(' ');
+                var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
+                                               
+                // populate street field
+                setFieldValue(streetId, streetAddress);
+                
+                // populate city and postcode fields
+                setFieldValue(cityId, cityAndPostcode[0]);
+                setFieldValue(postcodeId, cityAndPostcode[1]);
+                
+                // retrieve address region & populate province field
+                setFieldValue(provinceId, metaData.region);
+                
+                // remove focus from street field
+                streetField.blur();
+            });
+        };
+        
+        // load widget
+        document.addEventListener("DOMContentLoaded", (function(event) {
+            var script = document.createElement('script');
+            script.src = '//api.addressfinder.io/assets/v3/widget.js';
+            script.async = true;
+            script.onload = event;
+            document.body.appendChild(script);
+        })(initAF));
+           
+        var setFieldValue = function(elementId, value) {  
+            // update field value
+            var field = document.getElementById(elementId);
+            if (field) {
+                field.value = value;
+                return;
+            }
+            
+            // handle field not found
+            var errorMessage = "AddressFinder Error - unable to find an element with id: " + field;
+            if (window.console) {
+                console.log(errorMessage);
+            }
+        }
+    
+    </script>
+</apex:page>
