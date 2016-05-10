@@ -96,7 +96,7 @@
             }
             
             // handle field not found
-            var errorMessage = "AddressFinder Error - unable to find an element with id: " + field;
+            var errorMessage = "AddressFinder Error - unable to find an element with id: " + elementId;
             if(debug){
                 alert(errorMessage);
             } else {
