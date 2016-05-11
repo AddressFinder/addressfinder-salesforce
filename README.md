@@ -29,7 +29,7 @@ New users can register for a free account at one of these links:
 
 Existing users can obtain their API key from the [AddressFinder Portal](https://portal.addressfinder.io).
 
-For full example code take a look at our [example VisualForce pages](https://github.com/AbleTech/addressfinder-salesforce/tree/master/examples).
+For full example code take a look at our [example VisualForce pages](examples).
 
 ## Open Source
 
