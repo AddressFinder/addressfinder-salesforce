@@ -4,7 +4,7 @@
 
 Enables Salesforce developers to implement autocompletion of New Zealand and Australian Addresses in custom VisualForce pages. 
 
-![Alt Text](assets/salesforce-nz.gif)
+![Alt Text](assets/salesforce-au.gif)
 
 The AddressFinder for Salesforce script provides the following features:
 - Address autocompletion for New Zealand and Australian Addresses
