@@ -51,8 +51,10 @@ initAF = function() {
         var componentCount = addressComponents.length;
         
         // separate address components into city/postcode and street address
-        var cityAndPostcode = addressComponents[componentCount - 1].split(' ');
-        var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
+        var postcode = cityAndPostcode[cityAndPostcode.length - 1];
+        var city = cityAndPostcode.slice(0, cityAndPostcode.length - 1).join(' ');
+        setFieldValue(cityId, city);
+        setFieldValue(postcodeId, postcode);
                                        
         // populate street field
         setFieldValue(streetId, streetAddress);

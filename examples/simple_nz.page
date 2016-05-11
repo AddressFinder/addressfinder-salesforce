@@ -83,8 +83,10 @@
                 setFieldValue(streetId, streetAddress);
                 
                 // populate city and postcode fields
-                setFieldValue(cityId, cityAndPostcode[0]);
-                setFieldValue(postcodeId, cityAndPostcode[1]);
+                var postcode = cityAndPostcode[cityAndPostcode.length - 1];
+                var city = cityAndPostcode.slice(0, cityAndPostcode.length - 1).join(' ');
+                setFieldValue(cityId, city);
+                setFieldValue(postcodeId, postcode);
                 
                 // retrieve address region & populate province field
                 setFieldValue(provinceId, metaData.region);
