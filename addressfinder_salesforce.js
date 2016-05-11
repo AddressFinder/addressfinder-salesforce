@@ -11,19 +11,19 @@
 
 /**************************** CONFIGURATION ****************************/
 // AddressFinder license key.
-var afKey = '<insert your license key here>';
+var afKey = 'INSERT_LICENSE_KEY_HERE';
 
 // AddressFinder country details (supports NZ and AU country codes). 
-var countryCode = '<insert your country code here>';
-var countryName = '<insert your country name here>';
+var countryCode = 'NZ';
+var countryName = 'New Zealand';
 
 // address field elements - update these IDs to match the address fields on your page
 // (the street input element is used as the address search field)
-var streetId = '<insert your street field id here>'; 
-var cityId = '<insert your city field id here>';
-var provinceId = '<insert your province/state field id here>';
-var postcodeId = '<insert your postcode field id here>';
-var countryId = '<insert your street country id here>';
+var streetId = 'INSERT_STREET_FIELD_ID_HERE'; 
+var cityId = 'INSERT_CITY_FIELD_ID_HERE';
+var provinceId = 'INSERT_PROVINCE_FIELD_ID_HERE';
+var postcodeId = 'INSERT_POSTCODE_FIELD_ID_HERE';
+var countryId = 'INSERT_COUNTRY_FIELD_ID_HERE';
 
 // enable/disable debug mode (displays errors as JS alerts, else logs to console) 
 var debug = true;
