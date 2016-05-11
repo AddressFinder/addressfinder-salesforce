@@ -15,8 +15,8 @@ The AddressFinder for Salesforce script provides the following features:
 **_Insert Screencast Walkthrough Here_**
 
 1. Copy our script source:
-	- [AddressFinder for Salesforce New Zealand](develop/source/addressfinder_salesforce_nz.js)
-	- [AddressFinder for Salesforce Australia](develop/source/addressfinder_salesforce_au.js)
+	- [AddressFinder for Salesforce New Zealand](source/addressfinder_salesforce_nz.js)
+	- [AddressFinder for Salesforce Australia](source/addressfinder_salesforce_au.js)
 2. Paste the script into your VisualForce page
 3. Edit the `CONFIGURATION` block
   1. Enter your AddressFinder license key and country details
