@@ -51,17 +51,17 @@ initAF = function() {
         var componentCount = addressComponents.length;
         
         // separate address components into city/postcode and street address
-        var postcode = cityAndPostcode[cityAndPostcode.length - 1];
-        var city = cityAndPostcode.slice(0, cityAndPostcode.length - 1).join(' ');
-        setFieldValue(cityId, city);
-        setFieldValue(postcodeId, postcode);
+        var cityAndPostcode = addressComponents[componentCount - 1].split(' ');
+        var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
                                        
         // populate street field
         setFieldValue(streetId, streetAddress);
         
         // populate city and postcode fields
-        setFieldValue(cityId, cityAndPostcode[0]);
-        setFieldValue(postcodeId, cityAndPostcode[1]);
+        var city = cityAndPostcode.slice(0, cityAndPostcode.length - 1).join(' ');
+        var postcode = cityAndPostcode[cityAndPostcode.length - 1];
+        setFieldValue(cityId, city);
+        setFieldValue(postcodeId, postcode);
         
         // retrieve address region & populate province field
         setFieldValue(provinceId, metaData.region);
