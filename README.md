@@ -6,7 +6,7 @@ Enables Salesforce developers to implement autocompletion of New Zealand and Aus
 
 ![Alt Text](https://addressfinder.com.au/images/docs/addressfinder-woocommerce-AU-aa6a43c1.gif)
 
-The Salesforce script provides the following features:
+The AddressFinder for Salesforce script provides the following features:
 - Address autocompletion for New Zealand and Australian Addresses
 - Customisability for integration with custom Salesforce pages
 
