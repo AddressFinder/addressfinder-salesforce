@@ -36,4 +36,4 @@ Read and copy our code within the [example VisualForce pages](examples).
 
 ## Software License
 
-The AddressFinder plugin for Salesforce is Open Source.
+The AddressFinder plugin for Salesforce is released under the permissive free software [MIT License](LICENSE).
