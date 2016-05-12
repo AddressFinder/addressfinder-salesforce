@@ -1,4 +1,4 @@
-<apex:page standardController="Address__c" id="page">
+<apex:page standardController="Account" id="page">
 
     <apex:sectionheader title="AddressFinder" id="header"
                         description="Here's a simple VisualForce page demonstrating how you can integrate
@@ -16,7 +16,7 @@
         </apex:form>
     </apex:pageblock>
   
-  
+    
     <script>
     
         /*
@@ -36,11 +36,11 @@
     
         /**************************** CONFIGURATION ****************************/
         // AddressFinder license key.
-        var afKey = '4NDFAY69QMGCR8ULBPX3';
+        var afKey = 'H4ABTEQVW76UNLCFX8JG';
         
         // AddressFinder country details (supports NZ and AU country codes). 
-        var countryCode = 'NZ';
-        var countryName = 'New Zealand';
+        var countryCode = 'AU';
+        var countryName = 'Australia';
         
         // address field elements - update these IDs to match the address fields on your page
         // (the street input element is used as the address search field)
@@ -67,7 +67,7 @@
             );
             
             widget.on("result:select", function(address, metaData) {
-                
+        
                 // country is hardcoded to match the scope of the widget
                 setFieldValue(countryId, countryName);
         
@@ -76,20 +76,20 @@
                 var componentCount = addressComponents.length;
                 
                 // separate address components into city/postcode and street address
-                var cityAndPostcode = addressComponents[componentCount - 1].split(' ');
+                var cityStatePostcode = addressComponents[componentCount - 1].split(' ');
                 var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
                                                
                 // populate street field
                 setFieldValue(streetId, streetAddress);
                 
-                // populate city and postcode fields
-                var postcode = cityAndPostcode[cityAndPostcode.length - 1];
-                var city = cityAndPostcode.slice(0, cityAndPostcode.length - 1).join(' ');
+                // populate city, state and postcode fields
+                var cspLength = cityStatePostcode.length;
+                var city = cityStatePostcode.slice(0, cspLength - 2).join(' ');
+                var state = cityStatePostcode[cspLength - 2];
+                var postcode = cityStatePostcode[cspLength - 1];
                 setFieldValue(cityId, city);
+                setFieldValue(provinceId, state);
                 setFieldValue(postcodeId, postcode);
-                
-                // retrieve address region & populate province field
-                setFieldValue(provinceId, metaData.region);
                 
                 // remove focus from street field
                 streetField.blur();
