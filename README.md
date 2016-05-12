@@ -1,6 +1,6 @@
 # AddressFinder plugin for Salesforce
 
-Enables Salesforce developers to add autocomplete capability for Australian and New Zealand addresses. 
+Enables Salesforce developers to add autocomplete capability for Australian and New Zealand addresses.
 
 ![Alt Text](assets/salesforce-au.gif)
 
@@ -27,10 +27,10 @@ Follow the instructions below, or watch the [installation video](https://vimeo.c
 #### Obtaining a license key
 
 New users can register for a free account at one of these links:
-- [Free Account for Australia](https://portal.addressfinder.io/signup/au/free)
-- [Free Account for New Zealand](https://portal.addressfinder.io/signup/nz/free)
+- [Free Account for Australia](https://portal.addressfinder.io/signup/au/free?rc=sfgh)
+- [Free Account for New Zealand](https://portal.addressfinder.io/signup/nz/free?rc=sfgh)
 
-Existing users can obtain their API key from the [AddressFinder Portal](https://portal.addressfinder.io).
+Existing users can obtain their API key from the [AddressFinder Portal](https://portal.addressfinder.io?rc=sfgh).
 
 #### Implementation Examples
 
