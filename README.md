@@ -10,7 +10,9 @@ The AddressFinder plugin for Salesforce provides the following features:
 
 ## Install Instructions
 
-**_Insert Screencast Walkthrough Here_**
+Follow the instructions below, or watch the [installation video](https://vimeo.com/166301327).
+
+[![salesforce-bigcommerce plugin demo](assets/salesforce-installation-vimeo.png?raw=true)](https://vimeo.com/166301327)
 
 1. Copy our script source:
 	- [AddressFinder for Salesforce New Zealand](source/addressfinder_salesforce_nz.js)
