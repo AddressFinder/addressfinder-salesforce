@@ -14,8 +14,8 @@
 var afKey = 'INSERT_LICENSE_KEY_HERE';
 
 // AddressFinder country details (supports NZ and AU country codes). 
-var countryCode = 'NZ';
-var countryName = 'New Zealand';
+var countryCode = 'AU';
+var countryName = 'Australia';
 
 // address field elements - update these IDs to match the address fields on your page
 // (the street input element is used as the address search field)
@@ -51,18 +51,20 @@ initAF = function() {
         var componentCount = addressComponents.length;
         
         // separate address components into city/postcode and street address
-        var cityAndPostcode = addressComponents[componentCount - 1].split(' ');
+        var cityStatePostcode = addressComponents[componentCount - 1].split(' ');
         var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
                                        
         // populate street field
         setFieldValue(streetId, streetAddress);
         
-        // populate city and postcode fields
-        setFieldValue(cityId, cityAndPostcode[0]);
-        setFieldValue(postcodeId, cityAndPostcode[1]);
-        
-        // retrieve address region & populate province field
-        setFieldValue(provinceId, metaData.region);
+        // populate city, state and postcode fields
+        var cspLength = cityStatePostcode.length;
+        var city = cityStatePostcode.slice(0, cspLength - 2).join(' ');
+        var state = cityStatePostcode[cspLength - 2];
+        var postcode = cityStatePostcode[cspLength - 1];
+        setFieldValue(cityId, city);
+        setFieldValue(provinceId, state);
+        setFieldValue(postcodeId, postcode);
         
         // remove focus from street field
         streetField.blur();

@@ -1,25 +1,30 @@
-# AddressFinder for Salesforce
+# AddressFinder plugin for Salesforce
 
-## What is the AddressFinder for Salesforce script?
+Enables Salesforce developers to add autocomplete capability for Australian and New Zealand addresses. 
 
-Enables Salesforce developers to implement autocompletion of New Zealand and Australian Addresses in custom VisualForce pages. 
+![Alt Text](assets/salesforce-au.gif)
 
-![Alt Text](https://addressfinder.com.au/images/docs/addressfinder-woocommerce-AU-aa6a43c1.gif)
-
-The AddressFinder for Salesforce script provides the following features:
+The AddressFinder plugin for Salesforce provides the following features:
 - Address autocompletion for New Zealand and Australian Addresses
-- Customisability for integration with custom Salesforce pages
+- Ability to customise the integration on Salesforce pages
 
 ## Install Instructions
 
-**_Insert Screencast Walkthrough Here_**
+Follow the instructions below, or watch the [installation video](https://vimeo.com/166301327).
 
-1. Copy our script source from the [AddressFinder for Salesforce script](https://github.com/AbleTech/addressfinder-salesforce/blob/master/addressfinder_salesforce.js) in our GitHub repository
+[![salesforce-bigcommerce plugin demo](assets/salesforce-installation-vimeo.png?raw=true)](https://vimeo.com/166301327)
+
+1. Copy our script source:
+	- [AddressFinder for Salesforce New Zealand](source/addressfinder_salesforce_nz.js)
+	- [AddressFinder for Salesforce Australia](source/addressfinder_salesforce_au.js)
 2. Paste the script into your VisualForce page
 3. Edit the `CONFIGURATION` block
   1. Enter your AddressFinder license key and country details
   2. Edit the Address field IDs to match your page
-  3. Set debug mode (enabled by default).  This simply displays JS alerts if any of your Address field IDs are misconfigured.  You may prefer to disable debug mode, in which case these errors will be logged to the browser console.
+  3. Set debug mode (enabled by default).  This displays JS alerts if any of your address field IDs are misconfigured.  
+  4. When working successfully, disable debug mode. Any errors will be silently logged to the Javascript console.
+
+#### Obtaining a license key
 
 New users can register for a free account at one of these links:
 - [Free Account for Australia](https://portal.addressfinder.io/signup/au/free)
@@ -27,8 +32,10 @@ New users can register for a free account at one of these links:
 
 Existing users can obtain their API key from the [AddressFinder Portal](https://portal.addressfinder.io).
 
-For full example code take a look at our [example VisualForce pages](https://github.com/AbleTech/addressfinder-salesforce/tree/master/examples).
+#### Implementation Examples
 
-## Open Source
+Read and copy our code within the [example VisualForce pages](examples).
 
-The AddressFinder for Salesforce script is Open Source.
+## Software License
+
+The AddressFinder plugin for Salesforce is released under the permissive free software [MIT License](LICENSE).
