@@ -11,10 +11,8 @@
 (function(d,w){
 
     /** CONFIGURATION *********************************************************************/
-    var widget,
-        streetField = d.getElementById(streetId),
         // AddressFinder license key.
-        afKey       = 'INSERT_LICENSE_KEY_HERE',
+    var afKey       = 'INSERT_LICENSE_KEY_HERE',
         // AddressFinder country details (supports NZ and AU country codes).
         countryCode = 'NZ',
         countryName = 'New Zealand',
@@ -28,8 +26,7 @@
         // enable/disable debug mode (displays errors as JS alerts, else logs to console)
         debug       = true;
     /***************************************************************************************/
-
-
+    
     /** PRIVATE FUNCTIONS ******************************************************************/
     
     /*
@@ -64,12 +61,13 @@
      * use within the page's form.
      */
     var _initAF = function() {
-        widget = new AddressFinder.Widget(streetField, afKey, countryCode);
+        var streetField = d.getElementById(streetId),
+            widget      = new AddressFinder.Widget(streetField, afKey, countryCode);
 
-        widget.on("result:select", function(address, metaData) {
+        widget.on('result:select', function(address, metaData) {
             
             // country is hardcoded to match the scope of the widget
-            setFieldValue(countryId, countryName);
+            _setFieldValue(countryId, countryName);
 
             // get full address string from widget result
             var addressComponents = address.split(', ');
@@ -80,16 +78,16 @@
             var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
 
             // populate street field
-            setFieldValue(streetId, streetAddress);
+            _setFieldValue(streetId, streetAddress);
 
             // populate city and postcode fields
             var city = cityAndPostcode.slice(0, cityAndPostcode.length - 1).join(' ');
             var postcode = cityAndPostcode[cityAndPostcode.length - 1];
-            setFieldValue(cityId, city);
-            setFieldValue(postcodeId, postcode);
+            _setFieldValue(cityId, city);
+            _setFieldValue(postcodeId, postcode);
 
             // retrieve address region & populate province field
-            setFieldValue(provinceId, metaData.region);
+            _setFieldValue(provinceId, metaData.region);
 
             // remove focus from street field
             streetField.blur();

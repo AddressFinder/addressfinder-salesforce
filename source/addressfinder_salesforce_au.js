@@ -11,10 +11,8 @@
 (function(d,w){
 
     /**************************** CONFIGURATION ****************************/
-    var widget,
-        streetField = d.getElementById(streetId),
         // AddressFinder license key.
-        afKey       = 'INSERT_LICENSE_KEY_HERE',
+    var afKey       = 'INSERT_LICENSE_KEY_HERE',
         // AddressFinder country details (supports NZ and AU country codes).
         countryCode = 'AU',
         countryName = 'Australia',
@@ -27,8 +25,8 @@
         countryId   = 'INSERT_COUNTRY_FIELD_ID_HERE',
         // enable/disable debug mode (displays errors as JS alerts, else logs to console)
         debug       = true;
-    /***********************************************************************/
 
+    /***********************************************************************/
 
     /*********************** PRIVATE FUNCTIONS ****************************/
     /*
@@ -63,12 +61,13 @@
      * use within the page's form.
      */
     var _initAF = function() {
-        widget = new AddressFinder.Widget(streetField, afKey, countryCode);
+        var streetField = d.getElementById(streetId),
+            widget      = new AddressFinder.Widget(streetField, afKey, countryCode);
 
-        widget.on("result:select", function(address, metaData) {
+        widget.on('result:select', function(address, metaData) {
             
             // country is hardcoded to match the scope of the widget
-            setFieldValue(countryId, countryName);
+            _setFieldValue(countryId, countryName);
             
             // get full address string from widget result
             var addressComponents = address.split(', ');
@@ -79,16 +78,16 @@
             var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
             
             // populate street field
-            setFieldValue(streetId, streetAddress);
+            _setFieldValue(streetId, streetAddress);
 
             // populate city, state and postcode fields
             var cspLength = cityStatePostcode.length;
             var city = cityStatePostcode.slice(0, cspLength - 2).join(' ');
             var state = cityStatePostcode[cspLength - 2];
             var postcode = cityStatePostcode[cspLength - 1];
-            setFieldValue(cityId, city);
-            setFieldValue(provinceId, state);
-            setFieldValue(postcodeId, postcode);
+            _setFieldValue(cityId, city);
+            _setFieldValue(provinceId, state);
+            _setFieldValue(postcodeId, postcode);
 
             // remove focus from street field
             streetField.blur();
