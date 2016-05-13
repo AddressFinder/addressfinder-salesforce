@@ -104,12 +104,6 @@
         s.src = 'https://api.addressfinder.io/assets/v3/widget.js';
         s.async = 1;
         s.onload = _initAF;
-        /* For IE 7/8 compatibility */
-        s.onreadystatechange = function() {
-            if (s.readyState === 'complete' || s.readyState === 'loaded'){
-                _initAF();
-            }
-        };
         d.body.appendChild(script);
     };
     /***********************************************************************/
