@@ -64,8 +64,7 @@
         var streetField = d.getElementById(streetId),
             widget      = new AddressFinder.Widget(streetField, afKey, countryCode);
 
-        widget.on('result:select', function(address, metaData) {
-            
+        var _formatAddressFields = function(address, metaData){
             // country is hardcoded to match the scope of the widget
             _setFieldValue(countryId, countryName);
             
@@ -91,8 +90,9 @@
 
             // remove focus from street field
             streetField.blur();
+        };
 
-        });
+        widget.on('result:select', _formatAddressFields);
     };
 
     /*
