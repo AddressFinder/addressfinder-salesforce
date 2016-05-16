@@ -26,9 +26,9 @@
         // enable/disable debug mode (displays errors as JS alerts, else logs to console)
         debug       = true;
     /***************************************************************************************/
-    
+
     /** PRIVATE FUNCTIONS ******************************************************************/
-    
+
     /*
      * Sets the value of the input field corresponding to a given element id.
      * If the corresponding field is not found an error message is either
@@ -57,7 +57,7 @@
 
     /*
      * This callback function invokes the AF widget and binds it to the streetField
-     * If the user selects a result, then it formats the address response data for 
+     * If the user selects a result, then it formats the address response data for
      * use within the page's form.
      */
     var _initAF = function() {
@@ -65,7 +65,7 @@
             widget      = new AddressFinder.Widget(streetField, afKey, countryCode);
 
         var _formatAddressFields = function(address, metaData) {
-            
+
             // country is hardcoded to match the scope of the widget
             _setFieldValue(countryId, countryName);
 
@@ -106,7 +106,7 @@
         s.src = 'https://api.addressfinder.io/assets/v3/widget.js';
         s.async = 1;
         s.onload = _initAF;
-        d.body.appendChild(script);
+        d.body.appendChild(s);
     };
     /***********************************************************************/
 

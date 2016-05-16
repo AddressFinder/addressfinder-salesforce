@@ -57,7 +57,7 @@
 
     /*
      * This callback function invokes the AF widget and binds it to the streetField
-     * If the user selects a result, then it formats the address response data for 
+     * If the user selects a result, then it formats the address response data for
      * use within the page's form.
      */
     var _initAF = function() {
@@ -67,15 +67,15 @@
         var _formatAddressFields = function(address, metaData){
             // country is hardcoded to match the scope of the widget
             _setFieldValue(countryId, countryName);
-            
+
             // get full address string from widget result
             var addressComponents = address.split(', ');
             var componentCount = addressComponents.length;
-            
+
             // separate address components into city/postcode and street address
             var cityStatePostcode = addressComponents[componentCount - 1].split(' ');
             var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
-            
+
             // populate street field
             _setFieldValue(streetId, streetAddress);
 
@@ -104,7 +104,7 @@
         s.src = 'https://api.addressfinder.io/assets/v3/widget.js';
         s.async = 1;
         s.onload = _initAF;
-        d.body.appendChild(script);
+        d.body.appendChild(s);
     };
     /***********************************************************************/
 
