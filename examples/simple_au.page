@@ -18,58 +18,75 @@
 
 
     <script>
-
-        /*
-         * The AddressFinder for Salesforce plugin adds autocomplete capability for VisualForce pages.
-         *
-         * Below is a simple example showing how to integrate AddressFinder's JavaScript widget
-         * with your custom pages.  The configuration block allows you to specify your license
-         * key, country details, and the page's address fields.
-         *
-         * For more information view the README here:
-         * https://github.com/AbleTech/addressfinder-salesforce
-         *
-         * VERSION 1.0.1
-         *
-         * Copyright (c) 2016 Abletech
-         */
+    /*!
+     * The AddressFinder for Salesforce plugin adds autocomplete capability for VisualForce pages.
+     *
+     * For more information view the README here:
+     * https://github.com/AbleTech/addressfinder-salesforce/blob/master/README.md
+     *
+     * VERSION 1.0.2
+     *
+     * Copyright (c) 2016 Abletech
+     */
+    (function(d,w){
 
         /**************************** CONFIGURATION ****************************/
-        // AddressFinder license key.
-        var afKey = 'H4ABTEQVW76UNLCFX8JG';
+            // AddressFinder license key.
+        var afKey       = 'H4ABTEQVW76UNLCFX8JG',
+            // AddressFinder country details (supports NZ and AU country codes).
+            countryCode = 'AU',
+            countryName = 'Australia',
+            // address field elements - update these IDs to match the address fields on your page
+            // (the street input element is used as the address search field)
+            streetId    = 'page:block:form:blockSection:street',
+            cityId      = 'page:block:form:blockSection:city',
+            provinceId  = 'page:block:form:blockSection:province',
+            postcodeId  = 'page:block:form:blockSection:postcode',
+            countryId   = 'page:block:form:blockSection:country',
+            // enable/disable debug mode (displays errors as JS alerts, else logs to console)
+            debug       = true;
 
-        // AddressFinder country details (supports NZ and AU country codes).
-        var countryCode = 'AU';
-        var countryName = 'Australia';
-
-        // address field elements - update these IDs to match the address fields on your page
-        // (the street input element is used as the address search field)
-        var streetId = 'page:block:form:blockSection:street';
-        var cityId = 'page:block:form:blockSection:city';
-        var provinceId = 'page:block:form:blockSection:province';
-        var postcodeId = 'page:block:form:blockSection:postcode';
-        var countryId = 'page:block:form:blockSection:country';
-
-        // enable/disable debug mode (displays errors as JS alerts, else logs to console)
-        var debug = true;
         /***********************************************************************/
 
+        /*********************** PRIVATE FUNCTIONS ****************************/
+        /*
+         * Sets the value of the input field corresponding to a given element id.
+         * If the corresponding field is not found an error message is either
+         * displayed in a JS alert or, if debug mode is disabled, logged to console.
+         */
+        var _setFieldValue = function(elementId, value) {
+            // find the matching field
+            var field = d.getElementById(elementId);
+            // If the matching field exists
+            if (field) {
+                // update field value
+                field.value = value;
+                return;
+            }
+            // The field has not been found, log errors
+            var errorMessage = 'AddressFinder Error: '
+                                + 'Attempted to update value for field that could not be found.\n'
+                                + '\nField ID: ' + elementId
+                                + '\nValue: ' + value;
+            if (debug) {
+                alert(errorMessage);
+            } else if (w.console) {
+                console.log(errorMessage);
+            }
+        };
 
-        // initialise and configure AddressFinder widget
-        var widget;
-        var streetField = document.getElementById(streetId);
+        /*
+         * This callback function invokes the AF widget and binds it to the streetField
+         * If the user selects a result, then it formats the address response data for
+         * use within the page's form.
+         */
+        var _initAF = function() {
+            var streetField = d.getElementById(streetId),
+                widget      = new AddressFinder.Widget(streetField, afKey, countryCode);
 
-        initAF = function() {
-            widget = new AddressFinder.Widget(
-                streetField,
-                afKey,
-                countryCode
-            );
-
-            widget.on("result:select", function(address, metaData) {
-
+            var _formatAddressFields = function(address, metaData){
                 // country is hardcoded to match the scope of the widget
-                setFieldValue(countryId, countryName);
+                _setFieldValue(countryId, countryName);
 
                 // get full address string from widget result
                 var addressComponents = address.split(', ');
@@ -80,52 +97,43 @@
                 var streetAddress = addressComponents.slice(0, componentCount - 1).join('\n');
 
                 // populate street field
-                setFieldValue(streetId, streetAddress);
+                _setFieldValue(streetId, streetAddress);
 
                 // populate city, state and postcode fields
                 var cspLength = cityStatePostcode.length;
                 var city = cityStatePostcode.slice(0, cspLength - 2).join(' ');
                 var state = cityStatePostcode[cspLength - 2];
                 var postcode = cityStatePostcode[cspLength - 1];
-                setFieldValue(cityId, city);
-                setFieldValue(provinceId, state);
-                setFieldValue(postcodeId, postcode);
+                _setFieldValue(cityId, city);
+                _setFieldValue(provinceId, state);
+                _setFieldValue(postcodeId, postcode);
 
                 // remove focus from street field
                 streetField.blur();
-            });
+            };
+
+            widget.on('result:select', _formatAddressFields);
         };
 
-        // load widget
-        document.addEventListener("DOMContentLoaded", (function(event) {
-            var script = document.createElement('script');
-            script.src = '//api.addressfinder.io/assets/v3/widget.js';
-            script.async = true;
-            script.onload = event;
-            document.body.appendChild(script);
-        })(initAF));
+        /*
+         * This function is called when the window DOMContentLoaded event fires.
+         * It adds the AddressFinder widget script, and when it loads, calls _initAF().
+         */
+        var _addScript = function() {
+            var s = d.createElement('script');
+            s.src = 'https://api.addressfinder.io/assets/v3/widget.js';
+            s.async = 1;
+            s.onload = _initAF;
+            d.body.appendChild(s);
+        };
 
-        var setFieldValue = function(elementId, value) {
+        /***********************************************************************/
 
-            // update field value
-            var field = document.getElementById(elementId);
-            if (field) {
-                field.value = value;
-                return;
-            }
-
-            // handle field not found
-            var errorMessage = "AddressFinder Error: Attempted to update value for field that could not be found.\n"
-                                + "\nField ID: \t" + elementId
-                                + "\nValue: \t" + value;
-            if(debug){
-                alert(errorMessage);
-            } else {
-                if (window.console) {
-                    console.log(errorMessage);
-                }
-            }
-        }
-
+        /*
+         * Add the AF widget when DOM content has loaded.
+         * The widget (when downloaded) will then call the initAF function
+         */
+        w.addEventListener('DOMContentLoaded', _addScript);
+        })(document, window);
     </script>
 </apex:page>
