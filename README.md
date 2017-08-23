@@ -3,7 +3,6 @@
 Enables Salesforce developers to add autocomplete capability for Australian and New Zealand addresses.
 
 Supported Countries:
-
 * [Australia](https://addressfinder.com.au/?utm_source=salesforce%20plugin&utm_medium=plugin&utm_campaign=plugin&utm_term=Australia&utm_content=Supported%20Countries)
 * [New Zealand](https://addressfinder.nz/?utm_source=salesforce%20plugin&utm_medium=plugin&utm_campaign=plugin&utm_term=New%20Zealand&utm_content=Supported%20Countries)
 
