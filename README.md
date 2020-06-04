@@ -41,7 +41,3 @@ Follow the instructions below, or watch the [installation video](https://vimeo.c
 #### Implementation Examples
 
 Read and copy our code within the [example VisualForce pages](examples).
-
-## Software License
-
-The AddressFinder plugin for Salesforce is released under the permissive free software [MIT License](LICENSE).
