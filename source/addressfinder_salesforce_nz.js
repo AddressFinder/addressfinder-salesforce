@@ -4,11 +4,10 @@
  * For more information view the README here:
  * https://github.com/AbleTech/addressfinder-salesforce/blob/master/README.md
  *
- * VERSION 1.0.2
- *
  * Copyright (c) 2016 Abletech
  */
 (function(d,w){
+    const VERSION = '1.1.0';
 
     /** CONFIGURATION *********************************************************************/
         // AddressFinder license key.
@@ -61,8 +60,9 @@
      * use within the page's form.
      */
     var _initAF = function() {
-        var streetField = d.getElementById(streetId),
-            widget      = new AddressFinder.Widget(streetField, afKey, countryCode);
+        var streetField        = d.getElementById(streetId),
+            clientAgentVersion = `Salesforce/${VERSION}`,
+            widget             = new AddressFinder.Widget(streetField, afKey, countryCode, {ca: clientAgentVersion});
 
         var _formatAddressFields = function(address, metaData) {
 
